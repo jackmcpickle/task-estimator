@@ -4,7 +4,8 @@ import {
     askForMoreEstimates,
     askHowRisky,
     getEstimates,
-}  from './src/prompts';
+} from './src/prompts';
+import { writeEstimateToDisk } from './src/writer';
 
 const THE_ESTIMATE = [];
 
@@ -25,6 +26,7 @@ const init = async () => {
     if (askAgain) {
         init();
     } else {
+        await writeEstimateToDisk(THE_ESTIMATE);
         console.table(THE_ESTIMATE);
         process.exit(0);
     }
