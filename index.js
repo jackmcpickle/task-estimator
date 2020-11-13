@@ -25,7 +25,7 @@ const init = async () => {
     if (askAgain) {
         init();
     } else {
-        console.log(THE_ESTIMATE);
+        console.table(THE_ESTIMATE);
         process.exit(0);
     }
 }
