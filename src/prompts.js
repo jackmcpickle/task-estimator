@@ -1,39 +1,46 @@
 import { prompt } from  'inquirer';
 import {
-    estimateType,
-    riskMatrix,
-    generalEstimate,
-    detailedEstimate,
-    askAgain
+    estimateTypeQuestions,
+    riskMatrixQuestions,
+    generalEstimateQuestions,
+    detailedEstimateQuestions,
+    askAgainQuestions
 }  from './questions';
 import {
     ESTIMATE_DETAILED,
     ESTIMATE_GENERAL,
     getEstimateTypeDefault,
-    setEstimateTypeDefault
+    setEstimateTypeDefault,
 } from './answers';
+import { calculatePert, calculateRisk } from './calculations';
 
 export const askEstimateType = async () => {
     const type = getEstimateTypeDefault();
     if (type) return type;
-    const {ESTIMATE_TYPE} = await prompt(estimateType);
+    const { ESTIMATE_TYPE } = await prompt(estimateTypeQuestions);
     return ESTIMATE_TYPE;
 }
 
 export const askHowRisky = async () => {
-    return await prompt(riskMatrix);
+    const riskMatrix = await prompt(riskMatrixQuestions);
+    const { LIKELIHOOD, IMPACT } = riskMatrix;
+    const risk = calculateRisk(LIKELIHOOD, IMPACT);
+    return { ...riskMatrix, RISK: risk }
 }
 
 export const askForGeneralEstimate = async () => {
-    return await prompt(generalEstimate);
+    return await prompt(generalEstimateQuestions);
 }
 
 export const askForDetailedEstimate = async () => {
-    return await prompt(detailedEstimate);
+    const detailedEstimates = await prompt(detailedEstimateQuestions);
+    const { BEST_CASE, LIKELY_CASE, WORSE_CASE } = detailedEstimates;
+    const pert = calculatePert(BEST_CASE, LIKELY_CASE, WORSE_CASE);
+    return {...detailedEstimates, PERT_CASE: pert }
 }
 
 export const askForMoreEstimates = async () => {
-    const { ASK_AGAIN } = await prompt(askAgain);
+    const { ASK_AGAIN } = await prompt(askAgainQuestions);
     return ASK_AGAIN;
 }
 
@@ -47,7 +54,7 @@ export const getEstimates = async (type) => {
             break;
         }
         case ESTIMATE_DETAILED: {
-            estimates = await askForDetailedEstimate()
+            estimates = await askForDetailedEstimate();
             break;
         }
         default: {

@@ -27,7 +27,7 @@ const validNumber =  (input) => {
     return 'Please pick a number above 0';
 }
 
-export const estimateType = [
+export const estimateTypeQuestions = [
     {
         type: 'rawlist',
         name: ESTIMATE_TYPE,
@@ -46,7 +46,7 @@ export const estimateType = [
     },
 ]
 
-export const detailedEstimate = [
+export const detailedEstimateQuestions = [
     {
         type: 'number',
         name: BEST_CASE,
@@ -70,7 +70,7 @@ export const detailedEstimate = [
     }
 ];
 
-export const generalEstimate = [
+export const generalEstimateQuestions = [
     {
         type: 'number',
         name: BACKEND_DEV,
@@ -101,7 +101,7 @@ export const generalEstimate = [
     }
 ];
 
-export const riskMatrix = [
+export const riskMatrixQuestions = [
     {
         type: 'number',
         name: LIKELIHOOD,
@@ -120,7 +120,7 @@ export const riskMatrix = [
     },
 ];
 
-export const askAgain = [
+export const askAgainQuestions = [
     {
         type: 'confirm',
         name: ASK_AGAIN,
