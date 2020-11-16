@@ -4,8 +4,8 @@ import { parseAsync }  from 'json2csv';
 
 
 export const writeEstimateToDisk = async (data) => {
-    const fileJSON = path.resolve(process.cwd(), 'data/estimates.json');
-    const fileCSV = path.resolve(process.cwd(), 'data/estimates.csv');
+    const fileJSON = path.resolve(process.cwd(), 'output/estimates.json');
+    const fileCSV = path.resolve(process.cwd(), 'output/estimates.csv');
     const csvData = await parseAsync(data)
     await writeFile(fileJSON, JSON.stringify(data));
     await writeFile(fileCSV, csvData);
