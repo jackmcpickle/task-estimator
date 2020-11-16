@@ -6,28 +6,28 @@ import {
     getEstimates,
 } from './src/prompts';
 import { writeEstimateToDisk } from './src/writer';
-
-const THE_ESTIMATE = [];
+import estimator from './data/estimateData';
 
 const init = async () => {
-    const types = await askEstimateType();
-    console.log({types});
+    const estimateType = await askEstimateType();
+    console.log({estimateType});
 
 
-    const estimateValues = await getEstimates(types)
+    const estimateValues = await getEstimates(estimateType)
     console.log({estimateValues});
 
     const risk = await askHowRisky()
     console.log({risk});
 
-    THE_ESTIMATE.push({ ...estimateValues, ...risk });
+    estimator.add({ ...estimateValues, ...risk });
 
     const askAgain = await askForMoreEstimates();
+
     if (askAgain) {
         init();
     } else {
-        await writeEstimateToDisk(THE_ESTIMATE);
-        console.table(THE_ESTIMATE);
+        await writeEstimateToDisk(estimator.get());
+        console.table(estimator.get());
         process.exit(0);
     }
 }
