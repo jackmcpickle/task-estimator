@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node -r esm index.js",
     "lint": "eslint src/** --quiet",
-    "test": "jest"
+    "test": "jest && npm run lint"
   },
   "keywords": [],
   "author": "",
