@@ -19,14 +19,12 @@ export const ASK_AGAIN = 'ASK_AGAIN';
 
 let savedEstimateType = '';
 
-export const getEstimateTypeDefault = () => {
-    return savedEstimateType;
-}
+export const getEstimateTypeDefault = () => savedEstimateType;
 
 export const setEstimateTypeDefault = (type) => {
-    const types = [ESTIMATE_GENERAL, ESTIMATE_DETAILED];
-    if (type.indexOf(types)) {
-        savedEstimateType = type;
-    }
-    return savedEstimateType;
-}
+  const types = [ESTIMATE_GENERAL, ESTIMATE_DETAILED];
+  if (type.indexOf(types)) {
+    savedEstimateType = type;
+  }
+  return savedEstimateType;
+};
