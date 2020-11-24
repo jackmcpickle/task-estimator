@@ -22,9 +22,9 @@ let savedEstimateType = '';
 export const getEstimateTypeDefault = () => savedEstimateType;
 
 export const setEstimateTypeDefault = (type) => {
-  const types = [ESTIMATE_GENERAL, ESTIMATE_DETAILED];
-  if (type.indexOf(types)) {
-    savedEstimateType = type;
-  }
-  return savedEstimateType;
+    const types = [ESTIMATE_GENERAL, ESTIMATE_DETAILED];
+    if (type.indexOf(types)) {
+        savedEstimateType = type;
+    }
+    return savedEstimateType;
 };
