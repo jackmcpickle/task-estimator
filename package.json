@@ -8,6 +8,9 @@
     "lint": "eslint --fix src/** --quiet",
     "test": "jest && npm run lint"
   },
+  "bin": {
+    "task-estimator": "./cli.js"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
